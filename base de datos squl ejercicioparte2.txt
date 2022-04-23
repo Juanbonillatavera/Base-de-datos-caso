@@ -1,0 +1,280 @@
+C:\WINDOWS\system32>cd/
+
+C:\>cd laragon
+
+C:\laragon>cd bin
+
+C:\laragon\bin>cd C:\laragon\bin\mysql\mysql-5.7.33-winx64\bin
+
+C:\laragon\bin\mysql\mysql-5.7.33-winx64\bin>mysql -u root
+
+
+    insert into tratamientos(
+     trafechaasignado,
+     tradescripcion,
+     trafechainicio,
+     trafechafin,
+     traobservaciones,
+     trapaciente
+     ) values(
+     '2017-07-13',
+     'Tratamiento de conductos',
+     '2017-08-01',
+     '2017-08-01',
+     'paciente con hipertension',
+     '91222333'
+     );
+
+ insert into pacientes(
+    -> pacidentificacion,
+    -> pacnombres,
+    -> pacapellidos,
+    -> pacfechanacimiento,
+    -> pacsexo
+    -> )values(
+    -> '29234333',
+    -> 'Alejandra Marcela',
+    -> 'Diaz Granados',
+    -> '1980-03-24',
+    -> 'F'
+    -> );
+mysql> use juan_citas
+Database changed
+mysql> insert into
+    -> values('37456298','Diana Marcela', 'Estevez', '1985-09-06', 'F');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values('37456298','Diana Marcela', 'Estevez', '1985-09-06', 'F')' at line 2
+mysql> insert into pacientes
+    ->  values('37456298','Diana Marcela', 'Estevez', '1985-09-06', 'F');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into tratamientos
+    -> values(not null,'2017-06-05','resina','2017-06-05','2017-06-05','paciente con sensibilidad','37456298');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select from*pacientes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from*pacientes' at line 1
+mysql> select from* pacientes
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from* pacientes' at line 1
+mysql> describe pacientes;
++--------------------+---------------+------+-----+---------+-------+
+| Field              | Type          | Null | Key | Default | Extra |
++--------------------+---------------+------+-----+---------+-------+
+| pacidentificacion  | varchar(10)   | NO   | PRI | NULL    |       |
+| pacnombres         | varchar(50)   | NO   |     | NULL    |       |
+| pacapellidos       | varchar(50)   | NO   |     | NULL    |       |
+| pacfechanacimiento | date          | NO   |     | NULL    |       |
+| pacsexo            | enum('M','f') | NO   |     | NULL    |       |
++--------------------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select from*pacientes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from*pacientes' at line 1
+mysql> select from* pacientes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from* pacientes' at line 1
+mysql> select from * pacientes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from * pacientes' at line 1
+mysql> select * from pacientes;
++-------------------+-------------------+----------------+--------------------+---------+
+| pacidentificacion | pacnombres        | pacapellidos   | pacfechanacimiento | pacsexo |
++-------------------+-------------------+----------------+--------------------+---------+
+| 1098343678        | Juan Antonio      | Perez Pereira  | 1978-08-09         | M       |
+| 29234333          | Alejandra Marcela | Diaz Granados  | 1980-03-24         | f       |
+| 37456298          | Diana Marcela     | Estevez        | 1985-09-06         | f       |
+| 91222333          | Carlos Jesus      | Rodriguez Cala | 1970-01-23         | M       |
++-------------------+-------------------+----------------+--------------------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select pacnombres,pacapellidos,pacsexo;
+ERROR 1054 (42S22): Unknown column 'pacnombres' in 'field list'
+mysql> select pacnombres,pacapellidos,pacsexo from pacientes;
++-------------------+----------------+---------+
+| pacnombres        | pacapellidos   | pacsexo |
++-------------------+----------------+---------+
+| Juan Antonio      | Perez Pereira  | M       |
+| Alejandra Marcela | Diaz Granados  | f       |
+| Diana Marcela     | Estevez        | f       |
+| Carlos Jesus      | Rodriguez Cala | M       |
++-------------------+----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select pacnombres as nombres,
+    -> pacapellidos as apellidos,
+    -> pacsexo as sexo
+    -> from pacientes;
++-------------------+----------------+------+
+| nombres           | apellidos      | sexo |
++-------------------+----------------+------+
+| Juan Antonio      | Perez Pereira  | M    |
+| Alejandra Marcela | Diaz Granados  | f    |
+| Diana Marcela     | Estevez        | f    |
+| Carlos Jesus      | Rodriguez Cala | M    |
++-------------------+----------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select p.pacnombres, p.pacapellidos, p.pacsexo
+    -> from pacientes as p;
++-------------------+----------------+---------+
+| pacnombres        | pacapellidos   | pacsexo |
++-------------------+----------------+---------+
+| Juan Antonio      | Perez Pereira  | M       |
+| Alejandra Marcela | Diaz Granados  | f       |
+| Diana Marcela     | Estevez        | f       |
+| Carlos Jesus      | Rodriguez Cala | M       |
++-------------------+----------------+---------+
+4 rows in set (0.01 sec)
+
+mysql>  select p.pacnombres, p.pacapellidos, p.pacsexo
+    -> from pacientes p;
++-------------------+----------------+---------+
+| pacnombres        | pacapellidos   | pacsexo |
++-------------------+----------------+---------+
+| Juan Antonio      | Perez Pereira  | M       |
+| Alejandra Marcela | Diaz Granados  | f       |
+| Diana Marcela     | Estevez        | f       |
+| Carlos Jesus      | Rodriguez Cala | M       |
++-------------------+----------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select  pacnombres as nombres,
+    -> pacapellidos as apellidos, pacsexo as sexo
+    -> from pacientes
+    -> where pacsexo = 'F';
++-------------------+---------------+------+
+| nombres           | apellidos     | sexo |
++-------------------+---------------+------+
+| Alejandra Marcela | Diaz Granados | f    |
+| Diana Marcela     | Estevez       | f    |
++-------------------+---------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select  pacnombres as nombres,
+    -> pacapellidos as apellidos, pacsexo as sexo
+    -> from pacientes
+    -> where pacsexo = 'F'
+    -> order by pacnombres, pacapellidos;
++-------------------+---------------+------+
+| nombres           | apellidos     | sexo |
++-------------------+---------------+------+
+| Alejandra Marcela | Diaz Granados | f    |
+| Diana Marcela     | Estevez       | f    |
++-------------------+---------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select  pacnombres as nombres,
+    -> pacapellidos as apellidos, pacsexo as sexo
+    -> from pacientes
+    -> where pacsexo = 'F';
++-------------------+---------------+------+
+| nombres           | apellidos     | sexo |
++-------------------+---------------+------+
+| Alejandra Marcela | Diaz Granados | f    |
+| Diana Marcela     | Estevez       | f    |
++-------------------+---------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select pacnombres as nombres,
+    -> pacapellidos as apellidos,
+    -> pacsexo as sexo
+    -> from pacientes
+    -> where pacsexo = 'F'
+    -> order by desc  pacnombres, pacapellidos;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc  pacnombres, pacapellidos' at line 6
+mysql> select pacnombres as nombres,
+    -> pacapellidos as apellidos,
+    -> pacsexo as sexo
+    -> from pacientes
+    -> where pacsexo = 'F'
+    -> order by   pacnombres desc, pacapellidos desc;
++-------------------+---------------+------+
+| nombres           | apellidos     | sexo |
++-------------------+---------------+------+
+| Diana Marcela     | Estevez       | f    |
+| Alejandra Marcela | Diaz Granados | f    |
++-------------------+---------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select
+    -> a.pacnombrs,a.pacapellidos,
+    -> select ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select' at line 3
+mysql> select
+    -> a. pacnombres as nombres, a. pacapellidos as apellidos,
+    -> b. tradescripcion as descripcion , b. traobservaciones as observaciones
+    -> from pacientes a join tratamientos b on
+    -> a. pacidentificacion = b. trapaciente;
++---------------+----------------+--------------------------+---------------------------+
+| nombres       | apellidos      | descripcion              | observaciones             |
++---------------+----------------+--------------------------+---------------------------+
+| Carlos Jesus  | Rodriguez Cala | Tratamiento de conductos | paciente con hipertension |
+| Carlos Jesus  | Rodriguez Cala | Tratamiento de conductos | paciente con hipertension |
+| Juan Antonio  | Perez Pereira  | profilaxis               | sin novedad               |
+| Diana Marcela | Estevez        | resina                   | paciente con sensibilidad |
++---------------+----------------+--------------------------+---------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select
+    -> a. pacnombres as nombres, a. pacapellidos as apellidos,
+    -> b. tradescripcion as descripcion , b. traobservaciones as observaciones
+    -> from pacientes a join tratamientos b on
+    -> a. pacidentificacion = b. trapaciente
+    -> where a.pacsexo as sexo = 'F';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as sexo = 'F'' at line 6
+mysql> select
+    -> a. pacnombres as nombres, a. pacapellidos as apellidos,
+    -> b. tradescripcion as descripcion , b. traobservaciones as observaciones
+    -> from pacientes a join tratamientos b on
+    -> a. pacidentificacion = b. trapaciente
+    -> where a.pacsexo = 'F';
++---------------+-----------+-------------+---------------------------+
+| nombres       | apellidos | descripcion | observaciones             |
++---------------+-----------+-------------+---------------------------+
+| Diana Marcela | Estevez   | resina      | paciente con sensibilidad |
++---------------+-----------+-------------+---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select
+    -> (select a.pacnombres from pacientes a where a.pacidentificacion = b.trapacientes)
+    -> as nombres
+    -> as nombres;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as nombres' at line 4
+mysql> select
+    -> (select a.pacnombres from pacientes a where a.pacidentificacion = b.trapaciente) as nombres,
+    -> (select a.apellidos
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> select
+    -> (select a.pacnombres from pacientes a where a.pacidentificacion = b.trapaciente) as nombres,
+    -> (select a.pacapellidos from pacientes a where a.pacidentificacion = b.trapaciente) as apellidos,
+    -> b.tradescripcion as descripcion,
+    -> b.traobservaciones as observaciones
+    -> from tratamientos b
+    -> ;
++---------------+----------------+--------------------------+---------------------------+
+| nombres       | apellidos      | descripcion              | observaciones             |
++---------------+----------------+--------------------------+---------------------------+
+| Carlos Jesus  | Rodriguez Cala | Tratamiento de conductos | paciente con hipertension |
+| Carlos Jesus  | Rodriguez Cala | Tratamiento de conductos | paciente con hipertension |
+| Juan Antonio  | Perez Pereira  | profilaxis               | sin novedad               |
+| Diana Marcela | Estevez        | resina                   | paciente con sensibilidad |
++---------------+----------------+--------------------------+---------------------------+
+4 rows in set (0.03 sec)
+
+mysql> select pacnombre as nombres, pacapellidos as apellidos
+    -> from pacientes
+    -> where pacidentificacion not in (select trapaciente from tratamientos);
+ERROR 1054 (42S22): Unknown column 'pacnombre' in 'field list'
+mysql> select pacnombres as nombres, pacapellidos as apellidos
+    ->  from pacientes
+    -> where pacidentificacion not in (select trapaciente from tratamientos);
++-------------------+---------------+
+| nombres           | apellidos     |
++-------------------+---------------+
+| Alejandra Marcela | Diaz Granados |
++-------------------+---------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
